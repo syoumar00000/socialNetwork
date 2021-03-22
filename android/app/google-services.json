@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1097260037554",
+    "firebase_url": "https://sy-rezosocial.firebaseio.com",
+    "project_id": "sy-rezosocial",
+    "storage_bucket": "sy-rezosocial.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1097260037554:android:254739b11b63e2ae57e0ab",
+        "android_client_info": {
+          "package_name": "com.example.sy_rezosocial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1097260037554-h47hq79uupn0rqube7o4cl59cangsk0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp8yltuWSffaIKwAnMWfstApELfSFZUGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1097260037554-h47hq79uupn0rqube7o4cl59cangsk0u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
