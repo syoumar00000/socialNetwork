@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sy_rezosocial/view/my_material.dart';
 import 'controller/log_controller.dart';
 import 'controller/main_app_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
-
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,19 +19,25 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+          primarySwatch: Colors.grey,
+          canvasColor: Colors.transparent,
+          primaryColor: base,
+          accentColor: baseAccent
+          // visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
       home: _handleAuth(),
     );
   }
+
   //fonction  qui gere l'authentification
-   Widget _handleAuth() {
+  Widget _handleAuth() {
     return StreamBuilder<User>(
       stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (BuildContext context, snapshot){
-        return (!snapshot.hasData) ? LogController() : MainAppController(snapshot.data.uid);
+      builder: (BuildContext context, snapshot) {
+        return (!snapshot.hasData)
+            ? LogController()
+            : MainAppController(snapshot.data.uid);
       },
     );
-   }
+  }
 }

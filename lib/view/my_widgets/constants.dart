@@ -24,17 +24,21 @@ Icon writeIcon = Icon(Icons.border_color);
 Icon sendIcon = Icon(Icons.send);
 Icon camIcon = Icon(Icons.camera_enhance);
 Icon libraryIcon = Icon(Icons.photo_library);
-
+Icon likeEmpty = Icon(Icons.favorite_border);
+Icon likeFull = Icon(Icons.favorite);
+Icon msgIcon = Icon(Icons.message);
+Icon settingsIcon = Icon(Icons.settings);
 
 //keys
- String keyName = "name";
+String keyName = "name";
 String keySurname = "surname";
 String keyFollowers = "followers";
 String keyFollowing = "following";
 String keyImageUrl = "imageUrl";
 String keyUid = "uid";
-String keyPostId ="postID";
+String keyPostId = "postID";
 String keyText = "text";
 String keyDate = "date";
-String keyLikes="likes";
-String keyComments ="comments";
+String keyLikes = "likes";
+String keyComments = "comments";
+String keyDescription = "description";
