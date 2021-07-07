@@ -13,7 +13,7 @@ class _UsersState extends State<UsersPage> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream: FireHelper().fire_user.snapshots(),
+        stream: FireHelper().fireUser.snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasData) {
             List<DocumentSnapshot> document = snapshot.data.docs;

@@ -6,8 +6,8 @@ import 'package:sy_rezosocial/models/post.dart';
 import 'package:sy_rezosocial/view/page/detail_page.dart';
 
 class DetailPost extends StatelessWidget {
-  MonUser user;
-  Post post;
+  final MonUser user;
+  final Post post;
   DetailPost({this.user, this.post});
 
   @override

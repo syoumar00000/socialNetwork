@@ -10,7 +10,7 @@ import 'package:sy_rezosocial/view/page/profil_page.dart';
 import 'package:sy_rezosocial/view/page/users_page.dart';
 
 class MainAppController extends StatefulWidget {
-  String uid;
+  final String uid;
   MainAppController(this.uid);
   _MainState createState() => _MainState();
 }
@@ -24,7 +24,7 @@ class _MainState extends State<MainAppController> {
     super.initState();
     //creer une souscription au stream
     streamListener =
-        FireHelper().fire_user.doc(widget.uid).snapshots().listen((doc) {
+        FireHelper().fireUser.doc(widget.uid).snapshots().listen((doc) {
       setState(() {
         me = MonUser(doc);
       });

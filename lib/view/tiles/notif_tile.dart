@@ -15,7 +15,7 @@ class NotifTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot>(
-        stream: FireHelper().fire_user.doc(myNotif.userId).snapshots(),
+        stream: FireHelper().fireUser.doc(myNotif.userId).snapshots(),
         builder: (BuildContext ctx, AsyncSnapshot<DocumentSnapshot> snap) {
           if (!snap.hasData) {
             return Container();

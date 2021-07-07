@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sy_rezosocial/models/monuser.dart';
-import 'package:sy_rezosocial/util/alert_helper.dart';
 import 'package:sy_rezosocial/view/my_material.dart';
 
 class MyHeader extends SliverPersistentHeaderDelegate {
@@ -23,7 +22,6 @@ class MyHeader extends SliverPersistentHeaderDelegate {
           (scrolled)
               ? Container(height: 0.0, width: 0.0)
               : elementDescription("${user.surname} ${user.name}"),
-          //MyText("${user.surname} ${user.name}"),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[

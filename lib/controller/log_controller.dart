@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sy_rezosocial/view/my_material.dart';
-import 'package:sy_rezosocial/util/alert_helper.dart';
 import 'package:sy_rezosocial/util/fire_helper.dart';
 
 class LogController extends StatefulWidget {

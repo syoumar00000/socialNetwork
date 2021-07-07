@@ -58,7 +58,7 @@ class _FeedState extends State<FeedPage> {
   setupSub() {
     //je recupere les users que je follow
     sub = FireHelper()
-        .fire_user
+        .fireUser
         .where(keyFollowers, arrayContains: me.uid)
         .snapshots()
         .listen((datas) {

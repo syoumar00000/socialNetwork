@@ -10,7 +10,7 @@ class NotifPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: FireHelper()
-          .fire_notif
+          .fireNotif
           .doc(me.uid)
           .collection("SingleNotif")
           .snapshots(),

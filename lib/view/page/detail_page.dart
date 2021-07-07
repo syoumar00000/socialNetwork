@@ -8,8 +8,8 @@ import 'package:sy_rezosocial/view/tiles/postTiles.dart';
 import 'package:sy_rezosocial/view/tiles/comment_tile.dart';
 
 class DetailPage extends StatelessWidget {
-  MonUser user;
-  Post post;
+  final MonUser user;
+  final Post post;
   DetailPage({this.user, this.post});
 
   @override

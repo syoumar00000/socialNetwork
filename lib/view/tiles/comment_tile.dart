@@ -6,13 +6,13 @@ import 'package:sy_rezosocial/view/my_material.dart';
 import 'package:sy_rezosocial/models/monuser.dart';
 
 class CommentTile extends StatelessWidget {
-  Comment comment;
+  final Comment comment;
   CommentTile({this.comment});
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot>(
-      stream: FireHelper().fire_user.doc(comment.userId).snapshots(),
+      stream: FireHelper().fireUser.doc(comment.userId).snapshots(),
       builder: (BuildContext ctx, AsyncSnapshot<DocumentSnapshot> snap) {
         if (snap.hasData) {
           MonUser user = MonUser(snap.data);

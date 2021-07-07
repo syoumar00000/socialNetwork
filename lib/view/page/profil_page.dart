@@ -45,7 +45,7 @@ class _ProfilState extends State<ProfilPage> {
     _desc = TextEditingController();
     // subscription permet decouter automatiquement les modif sur lutilisateur et de le mettre a jour
     subscription =
-        FireHelper().fire_user.doc(widget.user.uid).snapshots().listen((data) {
+        FireHelper().fireUser.doc(widget.user.uid).snapshots().listen((data) {
       setState(() {
         widget.user = MonUser(data);
       });
@@ -142,7 +142,6 @@ class _ProfilState extends State<ProfilPage> {
           builder: (BuildContext ctx) {
             return Container(
               height: 150.0,
-              //color: Colors.transparent,
               child: Card(
                 elevation: 5.0,
                 margin: EdgeInsets.only(
