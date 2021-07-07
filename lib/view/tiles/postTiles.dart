@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sy_rezosocial/controller/detail_post_controller.dart';
 import 'package:sy_rezosocial/models/post.dart';
 import 'package:sy_rezosocial/models/monuser.dart';
+import 'package:sy_rezosocial/util/date_helper.dart';
+import 'package:sy_rezosocial/util/fire_helper.dart';
 import 'package:sy_rezosocial/view/my_material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -35,7 +38,8 @@ class PostTile extends StatelessWidget {
                           color: baseAccent,
                         ),
                         MyText(
-                          "${post.date}",
+                          DateHelper().myDate(post.date).toString(),
+                          // "${post.date}",
                           color: pointer,
                         ),
                       ],
@@ -98,7 +102,7 @@ class PostTile extends StatelessWidget {
                     IconButton(
                       icon:
                           (post.likes.contains(me.uid) ? likeFull : likeEmpty),
-                      onPressed: null,
+                      onPressed: () => FireHelper().addLike(post),
                     ),
                     MyText(
                       post.likes.length.toString(),
@@ -106,7 +110,14 @@ class PostTile extends StatelessWidget {
                     ),
                     IconButton(
                       icon: msgIcon,
-                      onPressed: null,
+                      onPressed: () {
+                        if (!detail) {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (BuildContext ctx) {
+                            return DetailPost(post: post, user: user);
+                          }));
+                        }
+                      },
                     ),
                     MyText(
                       post.comments.length.toString(),

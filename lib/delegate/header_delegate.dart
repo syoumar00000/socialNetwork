@@ -42,14 +42,8 @@ class MyHeader extends SliverPersistentHeaderDelegate {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              elementDescription("followers : ${user.followers.length}"),
-              elementDescription("following : ${user.following.length - 1}"),
-              /*  InkWell(
-                child: MyText("followers : ${user.followers.length}"),
-              ),
-              InkWell(
-                child: MyText("following : ${user.following.length - 1}"),
-              ), */
+              elementDescription("followers : ${user.followers.length - 1}"),
+              elementDescription("following : ${user.following.length}"),
             ],
           ),
         ],

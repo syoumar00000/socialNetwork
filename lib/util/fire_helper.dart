@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sy_rezosocial/models/monuser.dart';
+import 'package:sy_rezosocial/models/post.dart';
 import 'package:sy_rezosocial/view/my_material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
@@ -26,8 +27,8 @@ class FireHelper {
         .user;
     //creer le user afin de l'ajouter dans la bdd
     String uid = user.uid;
-    List<dynamic> followers = [];
-    List<dynamic> following = [uid];
+    List<dynamic> followers = [uid];
+    List<dynamic> following = [];
     Map<String, dynamic> map = {
       keyName: name,
       keySurname: surname,
@@ -49,6 +50,26 @@ class FireHelper {
   static final data_instance = FirebaseFirestore.instance;
   // la cle d'entree dans mes users
   final fire_user = data_instance.collection("users");
+  // la cle d'entree dans mes notifications
+  final fire_notif = data_instance.collection("notifications");
+
+  //methode pour envoyer une notification
+  //from(qui envoie la notif)
+  //from( a qui envoyé  la notif)
+  // le texte de la notif
+  addNotification(
+      String from, String to, String text, DocumentReference ref, String type) {
+    Map<String, dynamic> map = {
+      keyUid: from,
+      keyText: text,
+      keyType: type,
+      keyRef: ref,
+      keySeen: false,
+      keyDate: DateTime.now().millisecondsSinceEpoch.toInt(),
+    };
+    fire_notif.doc(to).collection("SingleNotif").add(map);
+  }
+
   //methode pour ajouter un user
   addUser(String uid, Map<String, dynamic> map) {
     fire_user.doc(uid).set(map);
@@ -81,7 +102,7 @@ class FireHelper {
         keyFollowing: FieldValue.arrayRemove([other.uid])
       });
       //et je supprime de sa face aussi
-      me.ref.update({
+      other.ref.update({
         keyFollowers: FieldValue.arrayRemove([me.uid])
       });
     } else {
@@ -90,9 +111,30 @@ class FireHelper {
         keyFollowing: FieldValue.arrayUnion([other.uid])
       });
       // et je lui montre a sa face aussi
-      me.ref.update({
+      other.ref.update({
         keyFollowers: FieldValue.arrayUnion([me.uid])
       });
+      //envoie de notif quand on suit un user
+      addNotification(me.uid, other.uid,
+          "${me.surname} a commencé a vous suivre .", me.ref, keyFollowers);
+    }
+  }
+
+  //ajouter like ou retirer un like par rapport a un post
+  addLike(Post post) {
+    //si jai  deja liker ce poste alors je supprime
+    if (post.likes.contains(me.uid)) {
+      post.ref.update({
+        keyLikes: FieldValue.arrayRemove([me.uid])
+      });
+    } else {
+      // sinon je like
+      post.ref.update({
+        keyLikes: FieldValue.arrayUnion([me.uid])
+      });
+      //envoie de notif quand on aime un poste
+      addNotification(me.uid, post.userId, "${me.surname} a aimé votre poste.",
+          post.ref, keyLikes);
     }
   }
 
@@ -121,6 +163,21 @@ class FireHelper {
       fire_user.doc(uid).collection("posts").doc().set(map);
     }
   }
+
+  //ajouter un commentaire
+  addComment(DocumentReference ref, String text, String postOwner) {
+    Map<dynamic, dynamic> map = {
+      keyUid: me.uid,
+      keyText: text,
+      keyDate: DateTime.now().millisecondsSinceEpoch.toInt(),
+    };
+    ref.update({
+      keyComments: FieldValue.arrayUnion([map])
+    });
+    //envoie de notif quand on comment un poste
+    addNotification(me.uid, postOwner, "${me.surname} a commenté votre poste.",
+        ref, keyComments);
+  }
   //fin base de donnée
 
   //function stream
@@ -140,11 +197,4 @@ class FireHelper {
     String urlString = await snapshot.ref.getDownloadURL();
     return urlString;
   }
-
-  /*  Future<String> addImageModified(File file, Reference ref) async {
-    UploadTask task = ref.putFile(file);
-    TaskSnapshot snapshot = await task.whenComplete(() => ref.getDownloadURL());
-    String urlString = await snapshot.ref.getDownloadURL();
-    return urlString;
-  } */
 }

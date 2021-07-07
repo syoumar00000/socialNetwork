@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sy_rezosocial/models/post.dart';
@@ -191,7 +190,7 @@ class _ProfilState extends State<ProfilPage> {
   Future<void> takePhoto(ImageSource source) async {
     var file = await ImagePicker()
         .getImage(source: source, maxWidth: 500.0, maxHeight: 500.0);
-    FireHelper().modifyPhoto(File("$file"));
+    FireHelper().modifyPhoto(File(file.path));
   }
 
   validate() {}
