@@ -8,12 +8,13 @@ class ProfilImage extends InkWell {
       @required String urlString,
       @required VoidCallback onPressed})
       : super(
-            onTap: onPressed,
-            child: CircleAvatar(
-              radius: size,
-              backgroundImage: (urlString != null && urlString != "")
-                  ? CachedNetworkImageProvider(urlString)
-                  : logoImage,
-              backgroundColor: white,
-            ));
+          onTap: onPressed,
+          child: CircleAvatar(
+            radius: size,
+            backgroundImage: (urlString != null && urlString != "")
+                ? CachedNetworkImageProvider(urlString)
+                : logoImage,
+            backgroundColor: white,
+          ),
+        );
 }

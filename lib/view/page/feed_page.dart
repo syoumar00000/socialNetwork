@@ -25,6 +25,7 @@ class _FeedState extends State<FeedPage> {
   @override
   void dispose() {
     sub.cancel();
+   // sub.dispose();
     super.dispose();
   }
 

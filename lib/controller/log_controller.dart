@@ -43,6 +43,7 @@ class _LogState extends State<LogController> {
         onNotification: (overscroll) {
           //recevoir les notifications
           overscroll.disallowGlow();
+          return;
         },
         child: SingleChildScrollView(
           child: InkWell(
@@ -96,7 +97,8 @@ class _LogState extends State<LogController> {
               elevation: 7.5,
               color: white,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0)),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
               child: Container(
                 margin: EdgeInsets.all(20.0),
                 child: Column(

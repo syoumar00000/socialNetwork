@@ -4,6 +4,7 @@ import 'package:sy_rezosocial/view/my_material.dart';
 import 'dart:async';
 import 'package:image_picker/image_picker.dart';
 import 'package:sy_rezosocial/util/fire_helper.dart';
+//import 'package:detectable_text_field/detectable_text_field.dart';
 
 class NewPost extends StatefulWidget {
   @override

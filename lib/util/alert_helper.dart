@@ -13,7 +13,6 @@ class AlertHelper {
       error,
       color: Colors.black,
     );
-    // await Future.delayed(Duration(seconds: 1), (){
     return showDialog(
         context: context,
         barrierDismissible: true,

@@ -74,28 +74,32 @@ class PostTile extends StatelessWidget {
                 (post.text != "" && post.text != null)
                     ? PaddingWith(
                         widget: Container(
-                        height: 1.0,
-                        width: MediaQuery.of(context).size.width,
-                        color: baseAccent,
-                      ))
+                          height: 1.0,
+                          width: MediaQuery.of(context).size.width,
+                          color: baseAccent,
+                        ),
+                      )
                     : Container(
                         height: 0.0,
                       ),
                 (post.text != "" && post.text != null)
                     ? PaddingWith(
                         widget: MyText(
-                        post.text,
-                        color: baseAccent,
-                      ))
+                          post.text,
+                          color: baseAccent,
+                          //tap: (){},
+                        ),
+                      )
                     : Container(
                         height: 0.0,
                       ),
                 PaddingWith(
-                    widget: Container(
-                  height: 1.0,
-                  width: MediaQuery.of(context).size.width,
-                  color: baseAccent,
-                )),
+                  widget: Container(
+                    height: 1.0,
+                    width: MediaQuery.of(context).size.width,
+                    color: baseAccent,
+                  ),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
